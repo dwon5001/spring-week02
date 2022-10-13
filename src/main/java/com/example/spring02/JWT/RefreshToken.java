@@ -1,4 +1,4 @@
-package com.example.spring02.model;
+package com.example.spring02.JWT;
 
 import lombok.Builder;
 import lombok.Getter;

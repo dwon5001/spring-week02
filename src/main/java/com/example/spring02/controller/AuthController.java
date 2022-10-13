@@ -12,19 +12,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/member")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public ResponseEntity<MemberResponseDto> signup(@RequestBody MemberRequestDto memberRequestDto) {
+    public ResponseEntity<?> signup(@RequestBody MemberRequestDto memberRequestDto) {
         return ResponseEntity.ok(authService.signup(memberRequestDto));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto memberRequestDto) {
+    public ResponseEntity<?> login(@RequestBody MemberRequestDto memberRequestDto) {
+
         return ResponseEntity.ok(authService.login(memberRequestDto));
     }
 

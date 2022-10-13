@@ -1,6 +1,6 @@
 package com.example.spring02.repository;
 
-import com.example.spring02.model.RefreshToken;
+import com.example.spring02.JWT.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

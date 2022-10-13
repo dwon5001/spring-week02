@@ -2,10 +2,9 @@ package com.example.spring02.security;
 
 import com.example.spring02.model.Member;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.Collections;
 

@@ -1,6 +1,5 @@
 package com.example.spring02.repository;
 
-import com.example.spring02.model.Comment;
 import com.example.spring02.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 

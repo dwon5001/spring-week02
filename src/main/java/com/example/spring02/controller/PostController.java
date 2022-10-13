@@ -11,38 +11,34 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api")
 public class PostController {
     private final PostService postService;
 
-    @PostMapping("/api/auth/post") //게시글 생성
-    public ResponseDto<?> createPost(@RequestBody PostRequestDto requestDto,
-                                     @AuthenticationPrincipal UserDetailsImpl userDetails) {
-
-        Long userId = userDetails.getUser().getId();
-
-        return postService.createPost(requestDto, userId);
+    @PostMapping("/auth/post") //게시글 생성
+    public ResponseDto<?> createPost(@RequestBody PostRequestDto requestDto) {
+        return postService.createPost(requestDto);
     }
 
-    @GetMapping("/api/post") // 게시글 조회
+    @GetMapping("/post") // 게시글 조회
     public ResponseDto<?> getAllPosts() {
         return postService.getAllPost();
     }
 
-    @GetMapping("/api/post/{id}") // 게시글 상세 조회
+    @GetMapping("/post/{id}") // 게시글 상세 조회
     public ResponseDto<?> getPost(@PathVariable Long id) {
         return postService.getPost(id);
     }
 
-    @PutMapping("/api/auth/post/{id}") // 게시글 수정
-    public ResponseDto<?> updatePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto,
-                                     @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        Long userId = userDetails.getUser().getId();
-        return postService.updatePost(id, postRequestDto, userId);
+    @PutMapping("/auth/post/{id}") // 게시글 수정
+    public ResponseDto<?> updatePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto) {
+
+        return postService.updatePost(id, postRequestDto);
     }
 
-    @DeleteMapping("/api/auth/post/{id}") // 게시글 삭제
-    public ResponseDto<?> deletePost(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        Long userId = userDetails.getUser().getId();
-        return postService.deletePost(id, userId);
+    @DeleteMapping("/auth/post/{id}") // 게시글 삭제
+    public ResponseDto<?> deletePost(@PathVariable Long id) {
+
+        return postService.deletePost(id);
     }
 }

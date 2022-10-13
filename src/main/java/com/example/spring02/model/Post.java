@@ -2,13 +2,16 @@ package com.example.spring02.model;
 
 import com.example.spring02.common.Timestamped;
 import com.example.spring02.dto.PostRequestDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,20 +30,23 @@ public class Post extends Timestamped {
 
     @Column(nullable = false)
     private String author;
-    @Column(nullable = false)
-    private Long userId;
 
-    public Post(PostRequestDto postRequestDto, Long userId) {
-        this.userId = userId;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+//    @JoinColumn(nullable = true)
+    private List<Comment> comments = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Member member;
+
+    public Post(PostRequestDto postRequestDto) {
         this.title = postRequestDto.getTitle();
         this.content = postRequestDto.getContent();
-        this.author = postRequestDto.getAuthor();
     }
 
     public void update(PostRequestDto postRequestDto) {
         this.title = postRequestDto.getTitle();
         this.content = postRequestDto.getContent();
-        this.author = postRequestDto.getAuthor();
     }
 
 }
